@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923160223) do
+ActiveRecord::Schema.define(version: 20170923160250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,13 @@ ActiveRecord::Schema.define(version: 20170923160223) do
     t.string "first_name"
     t.string "last_name"
     t.string "password"
+    t.bigint "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "reservations", "cars"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "users", "roles"
 end

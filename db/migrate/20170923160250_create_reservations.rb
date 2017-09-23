@@ -1,8 +1,8 @@
 class CreateReservations < ActiveRecord::Migration[5.1]
   def change
     create_table :reservations do |t|
-      t.belongs_to :car, index: true
-      t.belongs_to :user, index: true
+      t.references :car, foreign_key: true
+      t.references :user, foreign_key: true
       t.datetime :from
       t.datetime :to
       t.float :rental_charge
