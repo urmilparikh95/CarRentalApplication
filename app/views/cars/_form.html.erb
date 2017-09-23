@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status, id: :car_status %>
+    <%= form.select :status, Car.statuses.keys.map {|key| [key.humanize, key]}, id: :car_status %>
   </div>
 
   <div class="actions">
