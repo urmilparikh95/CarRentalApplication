@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :reservations
   resources :roles
   resources :cars
+  root 'cars#index'
 end
