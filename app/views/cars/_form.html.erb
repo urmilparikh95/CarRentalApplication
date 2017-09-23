@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :style %>
-    <%= form.text_field :style, id: :car_style %>
+    <%= form.select :style, Car.styles.values, id: :car_status %>
   </div>
 
   <div class="field">
@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, Car.statuses.keys.map {|key| [key.humanize, key]}, id: :car_status %>
+    <%= form.select :status, Car.statuses.values, id: :car_status %>
   </div>
 
   <div class="actions">
