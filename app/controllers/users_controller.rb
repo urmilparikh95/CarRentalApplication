@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-   # @users = User.where(= '')
+   @users = User.find(params[:id])
   end
 
   # GET /users/new
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         format.html { redirect_to '/', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { redirect_to signup_path }
+        format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -75,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :role_id)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :role_id)
     end
 end

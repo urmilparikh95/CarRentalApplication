@@ -5,12 +5,14 @@ git_source(:github) do |repo_name|
 end
 ruby '2.4.1'
 gem 'rails', '~> 5.1.4'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'binding_of_caller'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
