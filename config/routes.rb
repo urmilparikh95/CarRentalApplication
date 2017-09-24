@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'sessions#new'
   get  'signup',  to: 'users#new'
   post 'signup',  to: 'users#create'
+  get 'home' => 'users#customer_home'
   resources :users
   resources :reservations
   resources :cars

@@ -10,7 +10,7 @@ class CarsController < ApplicationController
   # GET /cars/1
   # GET /cars/1.json
   def show
-    @cars = Car.where(id = params[:id])
+
   end
 
   def show_available

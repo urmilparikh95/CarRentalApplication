@@ -66,6 +66,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def customer_home
+    @user = User.find(1)
+    if !params[:query]
+      @x = Car.all
+    else
+      @x = Car.where(params[:status].to_sym => params[:query].to_s).all
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -76,4 +86,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :role_id)
     end
+
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :role_id)
+  end
 end
