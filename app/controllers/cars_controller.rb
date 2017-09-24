@@ -1,5 +1,4 @@
 class CarsController < ApplicationController
-  before_action :require_user, only: [:index, :show]
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   # GET /cars
