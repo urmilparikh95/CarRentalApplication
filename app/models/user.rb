@@ -9,14 +9,14 @@ class User < ApplicationRecord
 
 
   def admin?
-    current_user.role.name == 'Admin'
+    role.name == 'Admin'
   end
 
   def super_admin?
-    current_user.role.name == 'SuperAdmin'
+    role.name == 'SuperAdmin'
   end
 
   def customer?
-    current_user.role.name == 'Customer'
+    role.name == 'Customer'
   end
 end

@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   post 'signup',  to: 'users#create'
   resources :users
   resources :reservations
-  resources :roles
   resources :cars
+  namespace :admin do
+    resources :users
+    resources :reservations
+    resources :cars
+  end
+  namespace :super_admin do
+    resources :users
+  end
 end
