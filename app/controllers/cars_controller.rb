@@ -10,7 +10,11 @@ class CarsController < ApplicationController
   # GET /cars/1
   # GET /cars/1.json
   def show
-    #@cars = Car.where(status ='available')
+    @cars = Car.where(id = params[:id])
+  end
+
+  def show_available
+    @cars = Car.where(:status => "available").all
   end
 
   # GET /cars/new
