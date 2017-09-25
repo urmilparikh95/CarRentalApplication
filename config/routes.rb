@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   post 'signup',  to: 'users#create'
   get 'home' => 'users#customer_home'
   resources :users
-  resources :reservations
-  resources :cars
+  resources :cars do
+    resources :reservations
+  end
   namespace :admin do
     resources :users
     resources :reservations

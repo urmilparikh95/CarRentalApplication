@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_car,:set_user, only: [:new, :create]
 
   # GET /reservations
   # GET /reservations.json
@@ -25,10 +26,15 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
+    @car.status = "reserved"
+    @reservation.car_id = @car.id
+    @reservation.user_id = @user.id
+    puts "Hours: #{((@reservation.to - @reservation.from) / 3600.0)}"
+    @reservation.rental_charge = ((@reservation.to - @reservation.from) / 3600.0) * @car.hourly_rate
 
     respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+      if @reservation.save && @car.save
+        format.html { redirect_to @car, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -67,8 +73,16 @@ class ReservationsController < ApplicationController
       @reservation = Reservation.find(params[:id])
     end
 
+    def set_car
+      @car = Car.find(params[:car_id])
+    end
+
+    def set_user
+      @user = current_user
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:from, :to, :rental_charge)
+      params.require(:reservation).permit(:from, :to)
     end
 end

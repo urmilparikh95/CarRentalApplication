@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if(!@user.role_id)
-      @user.role = Role.find_by role_name: 'Customer'
+      @user.role = Role.find_by_role_name('Customer')
     end
 
     respond_to do |format|
