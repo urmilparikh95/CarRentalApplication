@@ -1,4 +1,4 @@
-class Admin::ReservationsController < Admin::SuperAdminController
+class Admin::ReservationsController < Admin::AdminController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   # GET /reservations
