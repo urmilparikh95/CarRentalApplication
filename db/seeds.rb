@@ -5,6 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Role.create(role_name: 'SuperAdmin')
-Role.create(role_name: 'Admin')
-Role.create(role_name: 'Customer')
+Role.create(name: 'SuperAdmin')
+Role.create(name: 'Admin')
+Role.create(name: 'Customer')

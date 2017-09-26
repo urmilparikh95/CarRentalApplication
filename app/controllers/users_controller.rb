@@ -26,8 +26,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    if(!@user.role_id)
-      @user.role = Role.find_by_role_name('Customer')
+    unless @user.role
+      @user.role = Role.find_by_name('Customer')
     end
 
     respond_to do |format|
@@ -73,7 +73,6 @@ class UsersController < ApplicationController
     else
       @x = Car.where(params[:status].to_sym => params[:query].to_s).all
     end
-
   end
 
   private
@@ -86,8 +85,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :role_id)
     end
-
-  def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :role_id)
-  end
 end
