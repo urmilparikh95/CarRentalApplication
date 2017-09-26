@@ -47,4 +47,4 @@ production:
   <<: *default
   database: CarRental_production
   username: CarRental
-  password:
+  url: <%= ENV['DATABASE_URL'] %>
