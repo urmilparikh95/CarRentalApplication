@@ -46,5 +46,4 @@ test:
 production:
   <<: *default
   database: CarRental_production
-  username: CarRental
   url: <%= ENV['DATABASE_URL'] %>
