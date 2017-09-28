@@ -12,5 +12,5 @@ Car.create(licence_no: 'abc1234', manufacturer: 'Nissan', model: 'Sentra', style
 Car.create(licence_no: 'abc8765', manufacturer: 'Tesla', model: 'S', style: 'Sedan', hourly_rate: '20', location: 'Raleigh', status: 'Reserved')
 Car.create(licence_no: 'abc7777', manufacturer: 'Tesla', model: 'X', style: 'SUV', hourly_rate: '30', location: 'Durham', status: 'Available')
 Car.create(licence_no: 'abc8888', manufacturer: 'Honda', model: 'Civic', style: 'Sedan', hourly_rate: '5', location: 'Raleigh', status: 'Checked out')
-User.create(email: 'admin@gmail.com', first_name: 'Mr.', last_name: 'Admin', password: '123456', password_confirmation: 'admin123', role: Role.find_by_name('Admin'))
-User.create(email: 'superadmin@gmail.com', first_name: 'Mr.', last_name: 'SuperAdmin', password: '123456', password_confirmation: 'supadmin123', role: Role.find_by_name('SuperAdmin'))
+User.create(email: 'admin@gmail.com', first_name: 'Mr.', last_name: 'Admin', password: 'admin123', password_confirmation: 'admin123', role: Role.find_by_name('Admin'))
+User.create(email: 'superadmin@gmail.com', first_name: 'Mr.', last_name: 'SuperAdmin', password: 'supadmin123', password_confirmation: 'supadmin123', role: Role.find_by_name('SuperAdmin'))
