@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'Welcome to Car Rental Application.' }
+        format.html { redirect_to root_path, notice: 'Welcome to Car Rental Application.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
