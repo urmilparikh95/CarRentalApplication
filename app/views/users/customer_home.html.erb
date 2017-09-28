@@ -27,7 +27,7 @@
           <td><%= car.style %></td>
           <td><%= car.hourly_rate %></td>
           <td><%= car.location %></td>
-          <td><%= car.status %></td>
+          <td><%= car.status.humanize %></td>
           <td><%= link_to 'Show', car %></td>
           <% if(car.status == "available"); %>
           <td><%= link_to 'Reserve', car %></td>
