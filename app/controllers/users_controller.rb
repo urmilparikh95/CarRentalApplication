@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def customer_home
-    @user = User.find(1)
+    @user = current_user
     if !params[:query]
       @x = Car.all
     else
