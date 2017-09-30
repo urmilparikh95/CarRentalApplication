@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_user, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :customer_home]
 
   # GET /users/1
   # GET /users/1.json
@@ -51,11 +51,10 @@ class UsersController < ApplicationController
   end
 
   def customer_home
-    @user = current_user
     if !params[:query]
-      @x = Car.all
+      @cars = Car.all
     else
-      @x = Car.where(params[:status].to_sym => params[:query].to_s).all
+      @cars = Car.where("#{params[:status].to_sym} like ?", "%#{params[:query].to_s}%")
     end
   end
 

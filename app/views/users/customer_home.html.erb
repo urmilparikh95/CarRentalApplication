@@ -3,8 +3,8 @@
 <p style="float: right;margin-right: 0%"><%= link_to 'Edit your profile', edit_user_path(@user) %></p>
 <br><br>
 <div class="search">
-  <%= render 'form1' %>
-  <table>
+  <%= render 'search_form' %>
+  <table class="table">
     <thead>
     <tr>
       <th>Licence no</th>
@@ -19,7 +19,7 @@
     </thead>
 
     <tbody>
-    <% @x.each do |car| %>
+    <% @cars.each do |car| %>
         <tr>
           <td><%= car.licence_no %></td>
           <td><%= car.manufacturer %></td>
