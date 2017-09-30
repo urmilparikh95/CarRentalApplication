@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>From:</strong>
   <%= @reservation.from %>
@@ -15,5 +13,5 @@
   <%= @reservation.rental_charge %>
 </p>
 
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+<%= link_to 'Edit', edit_admin_reservation_path(@reservation) %> |
+<%= link_to 'Back', admin_reservations_path %>

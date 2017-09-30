@@ -12,9 +12,8 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
-    resources :cars do
-      resources :reservations
-    end
+    resources :cars
+    resources :reservations
   end
   namespace :super_admin do
     resources :users
