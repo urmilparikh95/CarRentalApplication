@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_user, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update, :customer_home]
+  before_action :set_user, only: [:show, :edit, :update]
 
   # GET /users/1
   # GET /users/1.json
   def show
   end
-
   # GET /users/new
   def new
     @user = User.new
@@ -47,14 +46,6 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def customer_home
-    if !params[:query]
-      @cars = Car.all
-    else
-      @cars = Car.where("#{params[:status].to_sym} like ?", "%#{params[:query].to_s}%")
     end
   end
 

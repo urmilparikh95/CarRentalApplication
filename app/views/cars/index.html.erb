@@ -1,6 +1,6 @@
 <h1>Cars</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Licence no</th>
@@ -25,12 +25,10 @@
         <td><%= car.location %></td>
         <td><%= car.status %></td>
         <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
         <% @reservation = Reservation.find_by_user_id(@user.id) %>
         <% if car.status == "available" and !@reservation %>
             <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
         <% end %>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

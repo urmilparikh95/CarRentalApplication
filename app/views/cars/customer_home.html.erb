@@ -1,6 +1,6 @@
-<b style="float: right;margin-right: 0%;color: #2E2F30">Welcome <%= @user.first_name %> <%= @user.last_name %></b></p>
+<b style="float: right;margin-right: 0%;color: #2E2F30">Welcome <%= current_user.first_name %> <%= current_user.last_name %></b></p>
 <br>
-<p style="float: right;margin-right: 0%"><%= link_to 'Edit your profile', edit_user_path(@user) %></p>
+<p style="float: right;margin-right: 0%"><%= link_to 'Edit your profile', edit_user_path(current_user) %></p>
 <br><br>
 <div class="search">
   <%= render 'search_form' %>
@@ -29,9 +29,8 @@
           <td><%= car.location %></td>
           <td><%= car.status.humanize %></td>
           <td><%= link_to 'Show', car %></td>
-          <% if(car.status == "available"); %>
-            <td><%= link_to 'Reserve', car %></td>
-            <td><%= link_to 'Check out', car %></td>
+          <% if car.available?; %>
+            <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
           <% end %>
         </tr>
     <% end %>
