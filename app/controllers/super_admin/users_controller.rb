@@ -33,7 +33,7 @@ class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to super_admin_users_path, notice: 'User was successfully created.' }
+        format.html { redirect_to super_admin_users_path, notice: 'Super Admin was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to super_admin_users_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to super_admin_users_path, notice: 'Super Admin was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to super_admin_users_path, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to super_admin_users_path, notice: 'Super Admin was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
