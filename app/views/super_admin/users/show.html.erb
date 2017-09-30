@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Super Admin</h1>
+
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -16,4 +18,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Edit', edit_super_admin_user_path(@user) %> |
+<%= link_to 'Back', super_admin_users_path %>

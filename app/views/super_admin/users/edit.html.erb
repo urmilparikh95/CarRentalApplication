@@ -1,4 +1,6 @@
-<h1>Editing User</h1>
+<h1>Editing Super Admin</h1>
 
-<%= render 'form', user: @user %>
+<%= render 'form', user: [:super_admin, @user] %>
 
+<%= link_to 'Show', super_admin_users_path(@user) %> |
+<%= link_to 'Back', super_admin_users_path %>
