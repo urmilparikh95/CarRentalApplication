@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Admins</h1>
 
-<h1>Users</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Email</th>
@@ -18,9 +16,9 @@
         <td><%= user.email %></td>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View Details', admin_user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,3 +26,4 @@
 
 <br>
 
+<%= link_to 'New Admin', new_admin_user_path %>

@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
-    resources :reservations
-    resources :cars
+    resources :cars do
+      resources :reservations
+    end
   end
   namespace :super_admin do
     resources :users
   end
 end
-
