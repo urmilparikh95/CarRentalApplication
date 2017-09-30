@@ -1,5 +1,4 @@
 class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
-  skip_before_action :require_user, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET super_admin/users

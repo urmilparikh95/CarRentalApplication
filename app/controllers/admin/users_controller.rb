@@ -1,5 +1,4 @@
 class Admin::UsersController < Admin::AdminController
-  skip_before_action :require_user, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET admin/users

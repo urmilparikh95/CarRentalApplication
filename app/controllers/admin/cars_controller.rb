@@ -10,7 +10,6 @@ class Admin::CarsController < Admin::AdminController
   # GET /cars/1
   # GET /cars/1.json
   def show
-    #@cars = Car.where(status ='available')
   end
 
   # GET /cars/new
@@ -29,7 +28,7 @@ class Admin::CarsController < Admin::AdminController
 
     respond_to do |format|
       if @car.save
-        format.html { redirect_to @car, notice: 'Car was successfully created.' }
+        format.html { redirect_to admin_cars_path, notice: 'Car was successfully created.' }
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class Admin::CarsController < Admin::AdminController
   def update
     respond_to do |format|
       if @car.update(car_params)
-        format.html { redirect_to @car, notice: 'Car was successfully updated.' }
+        format.html { redirect_to admin_cars_path, notice: 'Car was successfully updated.' }
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit }
@@ -57,7 +56,7 @@ class Admin::CarsController < Admin::AdminController
   def destroy
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
+      format.html { redirect_to admin_cars_path, notice: 'Car was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
