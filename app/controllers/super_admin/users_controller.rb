@@ -58,6 +58,7 @@ class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
   # DELETE super_admin/users/1
   # DELETE super_admin/users/1.json
   def destroy
+    redirect_to admin_users_path if @user == current_user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to super_admin_users_path, notice: 'Super Admin was successfully destroyed.' }

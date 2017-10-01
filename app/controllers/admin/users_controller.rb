@@ -8,6 +8,12 @@ class Admin::UsersController < Admin::AdminController
     @users = role.users
   end
 
+  # GET admin/customers
+  def customers
+    role = Role.find_by_name('Customer')
+    @users = role.users
+  end
+
   # GET admin/users/1
   # GET admin/users/1.json
   def show
@@ -58,6 +64,7 @@ class Admin::UsersController < Admin::AdminController
   # DELETE admin/users/1
   # DELETE admin/users/1.json
   def destroy
+    redirect_to admin_users_path if @user == current_user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to admin_users_path, notice: 'Admin was successfully destroyed.' }

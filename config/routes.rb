@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
+    get 'customers', to: 'users#customers'
     resources :cars
     resources :reservations
   end

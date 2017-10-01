@@ -1,28 +1,28 @@
 class Admin::CarsController < Admin::AdminController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
-  # GET /cars
-  # GET /cars.json
+  # GET admin/cars
+  # GET admin/cars.json
   def index
     @cars = Car.all
   end
 
-  # GET /cars/1
-  # GET /cars/1.json
+  # GET admin/cars/1
+  # GET admin/cars/1.json
   def show
   end
 
-  # GET /cars/new
+  # GET admin/cars/new
   def new
     @car = Car.new
   end
 
-  # GET /cars/1/edit
+  # GET admin/cars/1/edit
   def edit
   end
 
-  # POST /cars
-  # POST /cars.json
+  # POST admin/cars
+  # POST admin/cars.json
   def create
     @car = Car.new(car_params)
 
@@ -37,8 +37,8 @@ class Admin::CarsController < Admin::AdminController
     end
   end
 
-  # PATCH/PUT /cars/1
-  # PATCH/PUT /cars/1.json
+  # PATCH/PUT admin/cars/1
+  # PATCH/PUT admin/cars/1.json
   def update
     respond_to do |format|
       if @car.update(car_params)
@@ -51,12 +51,12 @@ class Admin::CarsController < Admin::AdminController
     end
   end
 
-  # DELETE /cars/1
-  # DELETE /cars/1.json
+  # DELETE admin/cars/1
+  # DELETE admin/cars/1.json
   def destroy
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to admin_cars_path, notice: 'Car was successfully destroyed.' }
+      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
