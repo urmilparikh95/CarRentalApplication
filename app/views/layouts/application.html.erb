@@ -13,6 +13,7 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
+       <h3>Welcome <%= current_user.first_name %> <%= current_user.last_name %></h3>
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
