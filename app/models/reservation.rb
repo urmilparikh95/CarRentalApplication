@@ -30,4 +30,8 @@ class Reservation < ApplicationRecord
   def calculate_rental_charge
     ((to - from) / 1.hour) * car.hourly_rate
   end
+
+  def is_within_date_range? a_date
+    from <= a_date and a_date <= to
+  end
 end
