@@ -63,7 +63,7 @@ class Admin::CarsController < Admin::AdminController
     return redirect_to admin_cars_path, notice: 'Car is still in use, It cannot be deleted now' unless @car.available?
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
+      format.html { redirect_to admin_cars_path, notice: 'Car was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

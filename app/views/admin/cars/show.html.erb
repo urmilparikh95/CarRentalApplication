@@ -30,7 +30,7 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @car.status %>
+  <%= @car.status.humanize %>
 </p>
 
 <%= link_to 'Reservation History', admin_path(@car) %> |

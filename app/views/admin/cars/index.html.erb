@@ -23,7 +23,7 @@
         <td><%= car.style %></td>
         <td><%= car.hourly_rate %></td>
         <td><%= car.location %></td>
-        <td><%= car.status %></td>
+        <td><%= car.status.humanize %></td>
         <td><%= link_to 'View Details', admin_car_path(car) %></td>
         <td><%= link_to 'Reservation History', admin_path(car) %></td>
         <td><%= link_to 'Edit', edit_admin_car_path(car) %></td>
