@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :car
   belongs_to :user
-
+  enum status: { current: 'Current', past: 'Past' }
   validate :booking_time
   validate :booking_within_seven_days
   validate :valid_time
@@ -23,7 +23,7 @@ class Reservation < ApplicationRecord
   end
 
   def valid_time
-    return if from > DateTime.now and to > DateTime.now
+    return if from >= DateTime.now and to >= DateTime.now
     errors.add(:base, 'Time should be more than current time')
   end
 

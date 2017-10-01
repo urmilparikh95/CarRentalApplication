@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     unless @user.role
-      @user.role = Role.find_by_name('Customer')
+      @user.role = Role.find_by_role_name('Customer')
     end
 
     respond_to do |format|

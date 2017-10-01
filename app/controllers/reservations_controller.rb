@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update]
   before_action :set_car,:set_user, only: [:new, :create]
 
   # GET /reservations
@@ -29,7 +29,7 @@ class ReservationsController < ApplicationController
     @car.status = "reserved"
     @reservation.car_id = @car.id
     @reservation.user_id = @user.id
-    puts "Hours: #{((@reservation.to - @reservation.from) / 3600.0)}"
+    @reservation.status = "current"
     @reservation.rental_charge = ((@reservation.to - @reservation.from) / 3600.0) * @car.hourly_rate
 
     respond_to do |format|
@@ -60,10 +60,14 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    @reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
-      format.json { head :no_content }
+    @current_reservation = user_reservation
+    @current_car = Car.find(@reservation.car_id)
+    @car_status = "available"
+    if @current_reservation.destroy and @current_car.update(:status => @car_status)
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Reservation was successfully cancelled.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -83,6 +87,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:from, :to)
+      params.require(:reservation).permit(:id , :from, :to)
     end
 end

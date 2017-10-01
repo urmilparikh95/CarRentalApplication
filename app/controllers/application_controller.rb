@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_reservation
-    Reservation.find_by_user_id(current_user.id)
+    @reservation = Reservation.where(:user_id => current_user.id).where(:status => "Current").first
   end
 
   def not_logged_in

@@ -30,7 +30,7 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @car.status %>
+  <%= @car.status.humanize %>
 </p>
 
 <% if @car.available? and !user_reservation %>

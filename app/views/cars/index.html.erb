@@ -1,4 +1,42 @@
 <div class="search">
+  <br>
+  <h4>Current Reservation</h4>
+  <% if @reservation = user_reservation %>
+      <% @current_car = Car.find(@reservation.car_id)%>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Licence no</th>
+          <th>Manufacturer</th>
+          <th>Model</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Rental Charge</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @current_car.licence_no %></td>
+            <td><%= @current_car.manufacturer %></td>
+            <td><%= @current_car.model %></td>
+            <td><%= @reservation.from %></td>
+            <td><%= @reservation.to %></td>
+            <td><%= @reservation.rental_charge %></td>
+            <% if @current_car.reserved? %>
+                <td><%= link_to 'Check out car', edit_car_path(@current_car) %></td>
+                <td><%= link_to 'Cancel Reservation', car_reservation_path(@current_car,@reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+            <% if @current_car.checked_out? %>
+                <td><%= link_to 'Return car', edit_car_path(@current_car) %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <% else %>
+      <h6 style="text-indent: 35px">You don't have any current reservation.</h6>
+  <% end %>
+  <br>
   <%= render 'search_form' %>
   <table class="table">
     <thead>
@@ -25,7 +63,7 @@
           <td><%= car.location %></td>
           <td><%= car.status.humanize %></td>
           <td><%= link_to 'Show', car %></td>
-          <% if car.available? and !user_reservation; %>
+          <% if car.available? and !user_reservation %>
               <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
           <% end %>
         </tr>
