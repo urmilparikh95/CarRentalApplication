@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :users
     get 'customers', to: 'users#customers'
     resources :cars
+    get 'cars/:id/checkout_history' => 'cars#checkout_history'
     resources :reservations
   end
   namespace :super_admin do

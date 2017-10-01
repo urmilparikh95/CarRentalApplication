@@ -1,5 +1,5 @@
 class Admin::CarsController < Admin::AdminController
-  before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :set_car, only: [:show, :edit, :update, :destroy, :checkout_history]
 
   # GET admin/cars
   # GET admin/cars.json
@@ -10,6 +10,12 @@ class Admin::CarsController < Admin::AdminController
   # GET admin/cars/1
   # GET admin/cars/1.json
   def show
+  end
+
+  # GET admin/cars/1/checkout_history
+  # GET admin/cars/1/checkout_history.json
+  def checkout_history
+    @reservations = @car.reservations
   end
 
   # GET admin/cars/new

@@ -1,0 +1,64 @@
+<h2>Checkout History</h2>
+<p>
+  <strong>Licence no:</strong>
+  <%= @car.licence_no %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @car.manufacturer %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car.model %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @car.style %>
+</p>
+
+<p>
+  <strong>Hourly rate:</strong>
+  <%= @car.hourly_rate %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @car.location %>
+</p>
+
+<p>
+  <strong>Current Status:</strong>
+  <%= @car.status %>
+</p>
+<br>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>From Time</th>
+    <th>To Time</th>
+    <th>Rental Charge</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.user.email %></td>
+        <td><%= reservation.user.first_name %></td>
+        <td><%= reservation.user.last_name %></td>
+        <td><%= reservation.from %></td>
+        <td><%= reservation.to %></td>
+        <td><%= reservation.rental_charge %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

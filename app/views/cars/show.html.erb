@@ -36,3 +36,4 @@
 <% if @car.available? and !user_reservation %>
   <%= link_to 'Rent This Car', new_car_reservation_path(@car) %> |
 <% end %>
+<%= link_to 'Back', root_path %>
