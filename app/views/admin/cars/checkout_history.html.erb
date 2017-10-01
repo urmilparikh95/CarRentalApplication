@@ -56,6 +56,7 @@
         <td><%= reservation.from %></td>
         <td><%= reservation.to %></td>
         <td><%= reservation.rental_charge %></td>
+        <td><%= link_to 'Show Details', admin_reservation_path(reservation) %></td>
       </tr>
   <% end %>
   </tbody>
