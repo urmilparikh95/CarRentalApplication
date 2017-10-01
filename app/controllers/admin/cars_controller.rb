@@ -1,5 +1,5 @@
 class Admin::CarsController < Admin::AdminController
-  before_action :set_car, only: [:show, :edit, :update, :destroy, :checkout_history]
+  before_action :set_car, only: [:show, :edit, :update, :destroy, :reservation_history]
 
   # GET admin/cars
   # GET admin/cars.json
@@ -12,9 +12,9 @@ class Admin::CarsController < Admin::AdminController
   def show
   end
 
-  # GET admin/cars/1/checkout_history
-  # GET admin/cars/1/checkout_history.json
-  def checkout_history
+  # GET admin/cars/1/reservation_history
+  # GET admin/cars/1/reservation_history.json
+  def reservation_history
     @reservations = @car.reservations
   end
 
@@ -60,6 +60,7 @@ class Admin::CarsController < Admin::AdminController
   # DELETE admin/cars/1
   # DELETE admin/cars/1.json
   def destroy
+    return redirect_to admin_cars_path, notice: 'Car is still in use, It cannot be deleted now' unless @car.available?
     @car.destroy
     respond_to do |format|
       format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
