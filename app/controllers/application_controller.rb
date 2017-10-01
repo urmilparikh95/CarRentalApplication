@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     Reservation.find_by_user_id(current_user.id)
   end
 
+  def not_logged_in
+    redirect_to root_path if logged_in?
+  end
+
   def require_user
     redirect_to login_path unless current_user
   end

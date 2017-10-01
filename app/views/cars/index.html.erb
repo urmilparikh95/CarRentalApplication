@@ -25,7 +25,7 @@
           <td><%= car.location %></td>
           <td><%= car.status.humanize %></td>
           <td><%= link_to 'Show', car %></td>
-          <% if car.available?; %>
+          <% if car.available? and !user_reservation; %>
               <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
           <% end %>
         </tr>

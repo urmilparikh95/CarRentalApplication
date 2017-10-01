@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   include SessionsHelper
   skip_before_action :require_user, only: [:new, :create]
+  before_action :not_logged_in, only: [:new, :create]
 
   def new
   end
