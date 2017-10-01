@@ -5,20 +5,16 @@ class CarsController < ApplicationController
   # GET /cars
   # GET /cars.json
   def index
-    @cars = Car.all
+    if !params[:query]
+      @cars = Car.all
+    else
+      @cars = Car.where("#{params[:status].to_sym} ilike ?", "%#{params[:query].to_s}%")
+    end
   end
 
   # GET /cars/1
   # GET /cars/1.json
   def show
-  end
-
-  def customer_home
-    if !params[:query]
-      @cars = Car.all
-    else
-      @cars = Car.where("#{params[:status].to_sym} like ?", "%#{params[:query].to_s}%")
-    end
   end
 
   private

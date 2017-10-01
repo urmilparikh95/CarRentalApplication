@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :user_reservation
   before_action :require_user
 
   # Returns the current logged-in user (if any).
@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?
+  end
+
+  def user_reservation
+    Reservation.find_by_user_id(current_user.id)
   end
 
   def require_user
