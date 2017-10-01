@@ -1,11 +1,23 @@
 FactoryGirl.define do
   factory :car do
-    licence_no "MyString"
-    manufacturer "MyString"
-    model "MyString"
-    style "MyString"
+    licence_no "ABCD123"
+    manufacturer "MyManufacturer"
+    model "MyModel"
+    style "Sedan"
     hourly_rate 1.5
-    location "MyString"
-    status "MyString"
+    location "MyLocation"
+    status :available
+  end
+
+  trait :invalid_licence do
+    licence_no 'asdf'
+  end
+
+  trait :invalid_hourly_rate do
+    hourly_rate 'asd'
+  end
+
+  trait :negative_hourly_rate do
+    hourly_rate -1.4
   end
 end
