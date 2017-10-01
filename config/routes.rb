@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :cars do
     resources :reservations
   end
+  get 'users/:id/reservation_history' => 'users#reservation_history'
   namespace :admin do
     resources :users
     get 'customers', to: 'users#customers'

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_user, only: [:new, :create]
   before_action :not_logged_in, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :reservation_history]
 
   # GET /users/1
   # GET /users/1.json
@@ -15,6 +15,14 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  def reservation_history
+    @current_reservation = user_reservation
+    if @current_reservation
+      @current_car = Car.find(@reservation.car_id)
+    end
+    @reservations = @user.reservations.where(:status => "Past")
   end
 
   # POST /users

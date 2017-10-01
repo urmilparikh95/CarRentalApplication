@@ -34,8 +34,11 @@
         </tbody>
       </table>
       <% else %>
-      <h6 style="text-indent: 35px">You don't have any current reservation.</h6>
+      <h5 style="text-indent: 35px">You don't have any current reservation.</h5>
   <% end %>
+  <br>
+  <h4>Reservation History</h4>
+    <h5 style="text-indent: 35px"><%= link_to 'View History', 'users/:id/reservation_history' %></h5>
   <br>
   <%= render 'search_form' %>
   <table class="table">
