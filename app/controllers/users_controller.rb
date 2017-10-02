@@ -19,9 +19,6 @@ class UsersController < ApplicationController
 
   def reservation_history
     @current_reservation = user_reservation
-    if @current_reservation
-      @current_car = Car.find(@reservation.car_id)
-    end
     @reservations = @user.reservations.where(:status => "Past")
   end
 

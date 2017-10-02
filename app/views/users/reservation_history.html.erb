@@ -1,7 +1,6 @@
 <br>
 <h4>Current Reservation</h4>
 <% if @current_reservation %>
-  <% @current_car = Car.find(@reservation.car_id)%>
   <table class="table">
     <thead>
     <tr>
@@ -16,12 +15,12 @@
     </thead>
     <tbody>
     <tr>
-      <td><%= @current_car.licence_no %></td>
-      <td><%= @current_car.manufacturer %></td>
-      <td><%= @current_car.model %></td>
-      <td><%= @reservation.from %></td>
-      <td><%= @reservation.to %></td>
-      <td><%= @reservation.rental_charge %></td>
+      <td><%= @current_reservation.car.licence_no %></td>
+      <td><%= @current_reservation.car.manufacturer %></td>
+      <td><%= @current_reservation.car.model %></td>
+      <td><%= @current_reservation.from %></td>
+      <td><%= @current_reservation.to %></td>
+      <td><%= @current_reservation.rental_charge %></td>
     </tr>
     </tbody>
   </table>
@@ -45,11 +44,10 @@
 
     <tbody>
     <% @reservations.each do |reservation| %>
-      <% @car = Car.find(reservation.car_id) %>
         <tr>
-          <td><%= @car.licence_no %></td>
-          <td><%= @car.manufacturer %></td>
-          <td><%= @car.model %></td>
+          <td><%= reservation.car.licence_no %></td>
+          <td><%= reservation.car.manufacturer %></td>
+          <td><%= reservation.car.model %></td>
           <td><%= reservation.from %></td>
           <td><%= reservation.to %></td>
           <td><%= reservation.rental_charge %></td>
