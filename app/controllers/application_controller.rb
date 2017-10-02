@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :user_reservation
+  helper_method :current_user, :logged_in?, :user_reservation, :valid_time_to_check_out?
   before_action :require_user
 
   # Returns the current logged-in user (if any).
@@ -15,6 +15,17 @@ class ApplicationController < ActionController::Base
 
   def user_reservation
     @reservation = Reservation.where(:user_id => current_user.id).where(:status => "Current").first
+  end
+
+  def valid_time_to_check_out?
+    @reservation = user_reservation
+    if @reservation
+      time_diff = @reservation.from - DateTime.now
+      puts "CheckOut Time Diff: #{time_diff}"
+      if(time_diff <= 600)
+        return true
+      end
+    end
   end
 
   def not_logged_in

@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
     @reservation.car_id = @car.id
     @reservation.user_id = @user.id
     @reservation.status = "current"
-    @reservation.rental_charge = ((@reservation.to - @reservation.from) / 3600.0) * @car.hourly_rate
+    @reservation.rental_charge = ((@reservation.to - @reservation.from) / 3600.0).round * @car.hourly_rate
 
     respond_to do |format|
       if @reservation.save && @car.save
