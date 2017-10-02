@@ -19,12 +19,12 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password, id: :user_password, :placeholder => 'Password', class: 'form-control' %>
+    <%= form.password_field :password, id: :user_password, :placeholder => 'Password (minimum 6 characters)', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :confirm_password %>
-    <%= form.password_field :password_confirmation, id: :user_password, :placeholder => 'Confirm Password', class: 'form-control' %>
+    <%= form.password_field :password_confirmation, id: :user_password, :placeholder => 'Confirm Password (minimum 6 characters)', class: 'form-control' %>
   </div>
 
   <div class="actions">

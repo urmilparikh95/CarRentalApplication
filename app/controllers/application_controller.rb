@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if @reservation
       time_diff = @reservation.from - DateTime.now
       puts "CheckOut Time Diff: #{time_diff}"
-      if(time_diff <= 600)
+      if(time_diff <= 36000)
         return true
       end
     end
