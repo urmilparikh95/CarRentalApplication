@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save && @car.save
-        format.html { redirect_to @car, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -68,6 +68,8 @@ class ReservationsController < ApplicationController
         format.html { redirect_to root_path, notice: 'Reservation was successfully cancelled.' }
         format.json { head :no_content }
       end
+    else
+      format.html { redirect_to root_path, alert: 'Something went wrong!!' }
     end
   end
 

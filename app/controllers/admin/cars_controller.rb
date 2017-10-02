@@ -1,5 +1,5 @@
 class Admin::CarsController < Admin::AdminController
-  before_action :set_car, only: [:show, :edit, :update, :destroy, :reservation_history]
+  before_action :set_car, only: [:show, :edit, :update, :destroy, :reservation_history, :edit_status, :update_status]
 
   # GET admin/cars
   # GET admin/cars.json
@@ -52,6 +52,33 @@ class Admin::CarsController < Admin::AdminController
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit }
+        format.json { render json: @car.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # GET admin/cars/1/edit_status
+  def edit_status
+  end
+
+  # PATCH/PUT admin/cars/1/update_status
+  def update_status
+    @reservation = @car.reservations.where(:status => 'Current').first
+    respond_to do |format|
+      if @car.reserved?
+        car_status = :checked_out
+        reservation_status = 'current'
+        message = 'Car was successfully checked out.'
+      else
+        car_status = :available
+        reservation_status = 'past'
+        message = 'Car was successfully returned.'
+      end
+      if @car.update(:status => car_status) and @reservation.update(:status => reservation_status)
+        format.html { redirect_to admin_customers_path, notice: message }
+        format.json { render :show, status: :ok, location: @car }
+      else
+        format.html { render :edit_status, alert: 'Something went wrong!!' }
         format.json { render json: @car.errors, status: :unprocessable_entity }
       end
     end

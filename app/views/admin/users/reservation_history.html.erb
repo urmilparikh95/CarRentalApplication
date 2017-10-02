@@ -21,6 +21,12 @@
       <td><%= @current_reservation.from %></td>
       <td><%= @current_reservation.to %></td>
       <td><%= @current_reservation.rental_charge %></td>
+      <% if @current_reservation.car.reserved? %>
+          <td><%= link_to 'Check out car', admin_car_edit_status_path(@current_reservation.car) %></td>
+      <% end %>
+      <% if @current_reservation.car.checked_out? %>
+          <td><%= link_to 'Return car', admin_car_edit_status_path(@current_reservation.car) %></td>
+      <% end %>
     </tr>
     </tbody>
   </table>

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :users
     get 'customers', to: 'users#customers'
     resources :cars
+    get 'cars/:id/edit_status', to: 'cars#edit_status', as: 'car_edit_status'
+    patch 'cars/:id/update_status', to: 'cars#update_status', as: 'car_update_status'
     get 'cars/:id/reservation_history', to: 'cars#reservation_history', as: 'car_reservation_history'
     get 'users/:id/reservation_history', to: 'users#reservation_history', as: 'user_reservation_history'
     resources :reservations
