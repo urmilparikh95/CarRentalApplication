@@ -54,10 +54,15 @@ class Admin::ReservationsController < Admin::AdminController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    @reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
-      format.json { head :no_content }
+    @car = @reservation.car
+    car_status = :available
+    if @reservation.destroy and @car.update(:status => car_status)
+      respond_to do |format|
+        format.html { redirect_to admin_users_path, notice: 'Reservation was successfully cancelled.' }
+        format.json { head :no_content }
+      end
+    else
+      format.html { redirect_to admin_users_path, alert: 'Something went wrong!!' }
     end
   end
 

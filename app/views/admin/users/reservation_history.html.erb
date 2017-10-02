@@ -23,6 +23,7 @@
       <td><%= @current_reservation.rental_charge %></td>
       <% if @current_reservation.car.reserved? %>
           <td><%= link_to 'Check out car', admin_car_edit_status_path(@current_reservation.car) %></td>
+          <td><%= link_to 'Cancel Reservation', admin_reservation_path(@current_reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
       <% if @current_reservation.car.checked_out? %>
           <td><%= link_to 'Return car', admin_car_edit_status_path(@current_reservation.car) %></td>
