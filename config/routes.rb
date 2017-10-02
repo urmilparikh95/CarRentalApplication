@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   resources :cars do
     resources :reservations
   end
-  get 'users/:id/reservation_history' => 'users#reservation_history'
+  get 'reservation_history', to: 'users#reservation_history'
   namespace :admin do
     resources :users
     get 'customers', to: 'users#customers'
     resources :cars
-    get 'cars/:id/reservation_history' => 'cars#reservation_history'
+    get 'cars/:id/reservation_history', to: 'cars#reservation_history', as: 'car_reservation_history'
+    get 'users/:id/reservation_history', to: 'users#reservation_history', as: 'user_reservation_history'
     resources :reservations
   end
   namespace :super_admin do

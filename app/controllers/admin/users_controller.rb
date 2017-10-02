@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :reservation_history]
 
   # GET admin/users
   # GET admin/users.json
@@ -12,6 +12,11 @@ class Admin::UsersController < Admin::AdminController
   def customers
     role = Role.find_by_name('Customer')
     @users = role.users
+  end
+
+  def reservation_history
+    @current_reservation = @user.reservations.where(:status => "Current").first
+    @reservations = @user.reservations.where(:status => "Past")
   end
 
   # GET admin/users/1
