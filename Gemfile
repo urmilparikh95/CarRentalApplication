@@ -28,6 +28,7 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
+gem 'jquery-rails'
 gem 'pg'
 group :development do
   gem 'better_errors'

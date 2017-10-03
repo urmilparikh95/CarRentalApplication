@@ -1,8 +1,53 @@
 <%# add navigation links to this file %>
-<% if logged_in? %>
-    <li>
-      <%= link_to 'Edit profile', edit_user_path(current_user) %>
+<% if logged_in?%>
+    <% if current_user.customer?%>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data toggle="dropdown">
+       Account <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to 'My Profile', current_user%></li>
+        <li><%= link_to 'Cars', cars_path %></li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to 'Edit profile', edit_user_path(current_user) %>
+        </li>
+      </ul>
     </li>
+    <% elsif current_user.admin?%>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data toggle="dropdown">
+            Account <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'My Profile', current_user %></li>
+            <li><%= link_to 'Cars', cars_path %></li>
+            <li><%= link_to 'Users', users_url %></li>
+            <li><%= link_to 'Admins', admin_users_url %></li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to 'Edit profile', edit_user_path(current_user) %>
+            </li>
+          </ul>
+        </li>
+    <% elsif current_user.super_admin?%>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data toggle="dropdown">
+            Account <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'My Profile', current_user %></li>
+            <li><%= link_to 'Cars', cars_path %></li>
+            <li><%= link_to 'Users', users_url %></li>
+            <li><%= link_to 'Admins', admin_users_url %></li>
+            <li><%= link_to 'SuperAdmins', super_admin_users_url %></li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to 'Edit profile', edit_user_path(current_user) %>
+            </li>
+          </ul>
+        </li>
+    <% end %>
     <li>
       <%= link_to 'Log out', logout_path, method: :delete, class: 'navbar-brand' %>
     </li>

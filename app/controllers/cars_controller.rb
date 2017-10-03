@@ -12,7 +12,32 @@ class CarsController < ApplicationController
       @cars = Car.where("#{params[:status].to_sym} ilike ?", "%#{params[:query].to_s}%")
     end
   end
+  
+  # GET /cars/1
+  # GET /cars/1.json
+  def show
+  end
 
+  def new
+    @car = Car.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+    end
+  end
+
+  def create
+    @car = Car.new(params.require(:car).permit(:licence_no, :manufacturer, :model, :style, :hourly_rate, :location, :status))
+
+    respond_to do |format|
+      if @car.save
+        format.html { redirect_to cars_path, notice: 'Car was successfully created.' }
+      else
+        format.html { render action: "new" }
+      end
+    end
+  end
+  
   def edit
   end
 
@@ -37,9 +62,13 @@ class CarsController < ApplicationController
     end
   end
 
-  # GET /cars/1
-  # GET /cars/1.json
-  def show
+  def destroy
+    @car = Car.find(params[:id])
+    @car.destroy
+
+    respond_to do |format|
+      format.html { redirect_to cars_path }
+    end
   end
 
   private
