@@ -69,7 +69,9 @@ class Admin::UsersController < Admin::AdminController
   # DELETE admin/users/1
   # DELETE admin/users/1.json
   def destroy
-    return redirect_to admin_users_path if @user == current_user
+    if @user == current_user or @user.super_admin?
+      return redirect_to admin_users_path, alert: 'Cannot delete this user'
+    end
     @user.destroy
     respond_to do |format|
       format.html { redirect_to admin_users_path, notice: 'Admin was successfully destroyed.' }
