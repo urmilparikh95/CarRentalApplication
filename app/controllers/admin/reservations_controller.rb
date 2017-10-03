@@ -58,11 +58,11 @@ class Admin::ReservationsController < Admin::AdminController
     car_status = :available
     if @reservation.destroy and @car.update(:status => car_status)
       respond_to do |format|
-        format.html { redirect_to admin_users_path, notice: 'Reservation was successfully cancelled.' }
+        format.html { redirect_to admin_reservations_path, notice: 'Reservation was successfully cancelled.' }
         format.json { head :no_content }
       end
     else
-      format.html { redirect_to admin_users_path, alert: 'Something went wrong!!' }
+      format.html { redirect_to admin_reservations_path, alert: 'Something went wrong!!' }
     end
   end
 

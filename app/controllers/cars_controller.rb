@@ -27,7 +27,7 @@ class CarsController < ApplicationController
         @reservation_stattus = "past"
         @message = 'Car was successfully returned.'
       end
-      if @current_car.update(:status => @car_status) && @reservation.update(:status => @reservation_stattus)
+      if @current_car.update(:status => @car_status) and @reservation.update(:status => @reservation_stattus)
         format.html { redirect_to root_path, notice: @message }
         format.json { render :show, status: :ok, location: @current_car }
       else
