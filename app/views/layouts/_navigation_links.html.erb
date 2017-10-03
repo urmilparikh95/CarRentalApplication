@@ -2,7 +2,7 @@
 <% if logged_in?%>
     <% if current_user.customer?%>
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data toggle="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
        Account <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
@@ -16,7 +16,7 @@
     </li>
     <% elsif current_user.admin?%>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data toggle="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Account <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -32,7 +32,7 @@
         </li>
     <% elsif current_user.super_admin?%>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data toggle="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Account <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
