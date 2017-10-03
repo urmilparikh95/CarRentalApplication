@@ -56,8 +56,8 @@ class Admin::UsersController < Admin::AdminController
   # PATCH/PUT admin/users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to admin_users_path, notice: 'Admin was successfully updated.' }
+      if @user.customer? and @user.update(user_params)
+        format.html { redirect_to admin_customers_path, notice: 'The user was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -83,7 +83,7 @@ class Admin::UsersController < Admin::AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-      redirect_to admin_users_path, notice: 'You are Unauthorized to access that page' if @user.super_admin?
+      redirect_to admin_users_path, alert: 'You are Unauthorized to access that page' if @user.super_admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
