@@ -1,4 +1,15 @@
-<%= form_for @car do |form| %>
+<%= form_with(model: car, local: true) do |form| %>
+  <% if car.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+      <% car.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :licence_no %>
@@ -35,7 +46,7 @@
     <%= form.select :status, Car.statuses.values, id: :car_status %>
   </div>
 
-    <div class="actions">
-      <%= form.submit form_for == :cars ? 'Add' : 'Save', class: 'btn-submit' %>
-    </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>

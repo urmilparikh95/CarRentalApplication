@@ -71,9 +71,6 @@
           <td><%= car.location %></td>
           <td><%= car.status.humanize %></td>
           <td><%= link_to 'Show', car %></td>
-		  <% if !current_user.customer? %>
-              <td><%= link_to 'Delete', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
           <% if car.available? and !user_reservation %>
               <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
           <% end %>
@@ -81,8 +78,5 @@
     <% end %>
     </tbody>
   </table>
-  <% if !current_user.customer? %>
-      <%= link_to 'Add new Car', new_car_path %>
-  <% end %>
 
 </div>

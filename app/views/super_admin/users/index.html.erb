@@ -17,6 +17,7 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= link_to 'View Details', super_admin_user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_super_admin_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>

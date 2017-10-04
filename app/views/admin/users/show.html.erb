@@ -16,4 +16,7 @@
 </p>
 
 <%= link_to 'Reservation History', admin_user_reservation_history_path(@user) %> |
+<% if @user.customer? %>
+    <%= link_to 'Edit', edit_admin_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', admin_users_path %>

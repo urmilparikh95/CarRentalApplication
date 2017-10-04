@@ -3,11 +3,6 @@ class UsersController < ApplicationController
   before_action :not_logged_in, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :reservation_history]
 
-  def index
-    role = Role.find_by_name('Customer')
-    @users = role.users
-  end
-  
   # GET /users/1
   # GET /users/1.json
   def show
@@ -58,15 +53,6 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-  
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_path }
     end
   end
 
