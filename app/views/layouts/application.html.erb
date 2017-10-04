@@ -13,7 +13,7 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
-      <% if logged_in? %>
+      <% if logged_in? and (current_page?(root_url) or current_page?(admin_cars_url)) %>
        <h3>Hello <%= current_user.first_name %> <%= current_user.last_name %></h3>
       <% end %>
       <%= render 'layouts/messages' %>

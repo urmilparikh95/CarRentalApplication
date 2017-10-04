@@ -1,6 +1,6 @@
 class Admin::CarsController < Admin::AdminController
   before_action :set_car, only: [:show, :edit, :update, :destroy, :reservation_history, :edit_status, :update_status]
-  before_action :set_suggested_car, only: [:new, :create]
+  before_action :set_suggested_car, only: [:new_suggested_car, :create_suggested_car]
   # GET admin/cars
   # GET admin/cars.json
   def index
@@ -21,24 +21,20 @@ class Admin::CarsController < Admin::AdminController
   # GET admin/cars/new
   def new
     @car = Car.new
-    @car.manufacturer = @suggested_car.manufacturer
-    @car.model = @suggested_car.model
-    @car.style = @suggested_car.style
-    @car.location = @suggested_car.location
+    puts "In desired method."
   end
 
   # GET admin/cars/1/edit
   def edit
   end
 
-  # POST admin/cars
+  # POST astatusdmin/cars
   # POST admin/cars.json
   def create
     @car = Car.new(car_params)
     @car.status = "available"
-    @suggested_car_status = "accepted"
     respond_to do |format|
-      if @car.save and @suggested_car.update(:status => @suggested_car_status)
+      if @car.save
         format.html { redirect_to admin_cars_path, notice: 'Car was successfully created.' }
         format.json { render :show, status: :created, location: @car }
       else
@@ -47,6 +43,30 @@ class Admin::CarsController < Admin::AdminController
       end
     end
   end
+
+  def new_suggested_car
+    @car = Car.new
+    @car.manufacturer = @suggested_car.manufacturer
+    @car.model = @suggested_car.model
+    @car.style = @suggested_car.style
+    @car.location = @suggested_car.location
+  end
+
+  def create_suggested_car
+    @car = Car.new(car_params)
+    @car.status = "available"
+    @suggested_car_status = "accepted"
+    respond_to do |format|
+      if @car.save and @suggested_car.update(:status => @suggested_car_status)
+        format.html { redirect_to admin_cars_path, notice: 'Suggested Car was successfully accepted and added into the system.' }
+        format.json { render :show, status: :created, location: @car }
+      else
+        format.html { render :new }
+        format.json { render json: @car.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # PATCH/PUT admin/cars/1
   # PATCH/PUT admin/cars/1.json
@@ -108,7 +128,7 @@ class Admin::CarsController < Admin::AdminController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_suggested_car
-      @suggested_car = SuggestedCar.find(3)
+      @suggested_car = SuggestedCar.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

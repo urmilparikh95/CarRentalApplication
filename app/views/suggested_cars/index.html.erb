@@ -20,7 +20,7 @@
         <td><%= suggested_car.user_name %></td>
         <td><%= suggested_car.manufacturer %></td>
         <td><%= suggested_car.model %></td>
-        <td><%= suggested_car.style %></td>
+        <td><%= suggested_car.style.humanize %></td>
         <td><%= suggested_car.location %></td>
         <td><%= link_to 'Make a Decision', suggested_car %></td>
       </tr>
