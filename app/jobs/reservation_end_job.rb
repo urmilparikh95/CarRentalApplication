@@ -4,7 +4,7 @@ class ReservationEndJob < ApplicationJob
   def perform(car, reservation)
     if reservation.car == car and car.reservations.where(:status => :current).first == reservation and car.checked_out?
       car.update(:status => :available)
-      reservation.update(:status => :past)
+      reservation.update_column('status', 'Past')
     end
   end
 end
