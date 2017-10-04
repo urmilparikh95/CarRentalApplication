@@ -25,7 +25,7 @@
         <td><%= car.location %></td>
         <td><%= car.status.humanize %></td>
         <td><%= link_to 'View Details', admin_car_path(car) %></td>
-        <td><%= link_to 'Reservation History', admin_car_reservation_history_path(car) %></td>
+        <td><%= link_to 'Reservations', admin_car_reservation_history_path(car) %></td>
         <td><%= link_to 'Edit', edit_admin_car_path(car) %></td>
         <td><%= link_to 'Destroy', admin_car_path(car), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
