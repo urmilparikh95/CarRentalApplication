@@ -3,8 +3,8 @@ class Reservation < ApplicationRecord
   belongs_to :user
   enum status: { current: 'Current', past: 'Past' }
   validate :booking_time
-  validate :booking_within_seven_days
-  validate :valid_time
+  validate :booking_within_seven_days, :on => :create
+  validate :valid_time, :on => :create
 
   def booking_time
     return if (to - from) / 1.hour >= 1 and (to - from) / 1.hour <= 10
@@ -28,7 +28,7 @@ class Reservation < ApplicationRecord
   end
 
   def calculate_rental_charge
-    ((to - from) / 1.hour) * car.hourly_rate
+    (((to - from) / 1.hour) * car.hourly_rate).round
   end
 
   def is_within_date_range? a_date

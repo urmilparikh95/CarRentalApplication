@@ -52,7 +52,7 @@ class ReservationsController < ApplicationController
     end
 
     def set_user
-      if current_user.reservations.where(status => 'Current')
+      unless current_user.reservations.where(:status => 'Current').empty?
         return redirect_to root_path, alert: 'You already have a reservation!!'
       end
       @user = current_user
