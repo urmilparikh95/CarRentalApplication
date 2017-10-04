@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save && @car.save
-        ReservationInvalidationJob.set(wait_until: @reservation.from + 1.minutes).perform_later(@car, @reservation)
+        ReservationInvalidationJob.set(wait_until: @reservation.from + 30.minutes).perform_later(@car, @reservation)
         ReservationEndJob.set(wait_until: @reservation.to).perform_later(@car, @reservation)
         format.html { redirect_to root_path, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
