@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   get 'reservation_history', to: 'users#reservation_history'
   namespace :admin do
+    root 'admin/cars#index'
     resources :users
     get 'customers', to: 'users#customers'
     resources :cars
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     resources :reservations
   end
   namespace :super_admin do
+    root 'admin/cars#index'
     resources :users
   end
 end
