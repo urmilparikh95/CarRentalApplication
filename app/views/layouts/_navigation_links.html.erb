@@ -2,10 +2,12 @@
 <% if logged_in?%>
     <% if current_user.admin?%>
         <li><%= link_to 'Cars', admin_cars_path %></li>
+        <li><%= link_to 'Reservations', admin_reservations_path %></li>
         <li><%= link_to 'Customers', admin_customers_path %></li>
         <li><%= link_to 'Admins', admin_users_path %></li>
     <% elsif current_user.super_admin?%>
         <li><%= link_to 'Cars', admin_cars_path %></li>
+        <li><%= link_to 'Reservations', admin_reservations_path %></li>
         <li><%= link_to 'Customers', admin_customers_path %></li>
         <li><%= link_to 'Admins', admin_users_path %></li>
         <li><%= link_to 'SuperAdmins', super_admin_users_path %></li>
