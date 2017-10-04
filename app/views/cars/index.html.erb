@@ -24,7 +24,7 @@
             <td><%= @reservation.to %></td>
             <td><%= @reservation.rental_charge %></td>
             <% if @current_car.reserved?%>
-                <% if valid_time_to_check_out?%>
+                <% if @reservation.valid_time_to_check_out? %>
                   <td><%= link_to 'Check out car', edit_car_path(@current_car) %></td>
                 <% end %>
                 <td><%= link_to 'Cancel Reservation', car_reservation_path(@current_car,@reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,7 +35,7 @@
           </tr>
         </tbody>
       </table>
-      <% if @current_car.reserved? and !valid_time_to_check_out? %>
+      <% if @current_car.reserved? and !@reservation.valid_time_to_check_out? %>
           <h5 style="text-indent: 35px">Checkout link will be available before 10 minutes of your reservation. &nbsp;&nbsp;&nbsp; <%= link_to "Reload", root_path %></h5>
       <% end %>
   <% else %>

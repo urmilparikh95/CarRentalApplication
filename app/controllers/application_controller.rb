@@ -17,17 +17,6 @@ class ApplicationController < ActionController::Base
     @reservation = Reservation.where(:user_id => current_user.id).where(:status => "Current").first
   end
 
-  def valid_time_to_check_out?
-    @reservation = user_reservation
-    if @reservation
-      time_diff = @reservation.from - DateTime.now
-      puts "CheckOut Time Diff: #{time_diff}"
-      if(time_diff <= 600)
-        return true
-      end
-    end
-  end
-
   def suggested_car_exist?
     @reservation = SuggestedCar.where(:status => "Pending").first
   end

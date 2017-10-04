@@ -34,4 +34,9 @@ class Reservation < ApplicationRecord
   def is_within_date_range? a_date
     from <= a_date and a_date <= to
   end
+
+  def valid_time_to_check_out?
+    time_diff = from - DateTime.now
+    time_diff <= 10.minutes
+  end
 end
