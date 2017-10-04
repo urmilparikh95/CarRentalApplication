@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
   belongs_to :car
   belongs_to :user
   enum status: { current: 'Current', past: 'Past' }
-  validate :booking_time
+  # validate :booking_time   to test mailer!!
   validate :booking_within_seven_days, :on => :create
   validate :valid_time, :on => :create
 
