@@ -3,6 +3,6 @@ class CustomerMailer < ApplicationMailer
     @user = user
     @car = car
     @reservation = reservation
-    mail to: user.email, subject: 'Someone wants to join your carpool!'
+    mail to: user.email, subject: 'Reservation time has ended'
   end
 end
