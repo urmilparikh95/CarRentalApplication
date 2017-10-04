@@ -49,7 +49,6 @@
   <table class="table">
     <thead>
     <tr>
-      <th>Licence no</th>
       <th>Manufacturer</th>
       <th>Model</th>
       <th>Style</th>
@@ -63,14 +62,13 @@
     <tbody>
     <% @cars.each do |car| %>
         <tr>
-          <td><%= car.licence_no %></td>
           <td><%= car.manufacturer %></td>
           <td><%= car.model %></td>
           <td><%= car.style %></td>
           <td><%= car.hourly_rate %></td>
           <td><%= car.location %></td>
           <td><%= car.status.humanize %></td>
-          <td><%= link_to 'Show', car %></td>
+          <td><%= link_to 'Details', car %></td>
           <% if car.available? and !user_reservation %>
               <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
           <% end %>
@@ -79,9 +77,6 @@
     </tbody>
   </table>
 
-  <% if !current_user.customer? %>
-      <%= link_to 'Add new Car', new_car_path %>
-  <% end %>
   <h5>Did not like our collection of Cars? Suggest a Car to us.</h5>
   <h5><%= link_to 'Suggest a Car', new_suggested_car_path %></h5>
 </div>
