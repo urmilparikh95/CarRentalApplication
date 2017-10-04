@@ -56,7 +56,7 @@ class Admin::UsersController < Admin::AdminController
   # PATCH/PUT admin/users/1.json
   def update
     respond_to do |format|
-      if @user.customer? and @user.update(user_params)
+      if @user.customer? and @user.update(user_params_update)
         format.html { redirect_to admin_customers_path, notice: 'The user was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -92,5 +92,9 @@ class Admin::UsersController < Admin::AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name, :password, :role_id)
+    end
+	
+	def user_params_update
+      params.require(:user).permit(:email, :first_name, :last_name)
     end
 end
