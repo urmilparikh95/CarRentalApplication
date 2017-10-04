@@ -36,7 +36,7 @@
         </tbody>
       </table>
       <% if @current_car.reserved? and !valid_time_to_check_out? %>
-          <h5 style="text-indent: 35px">Checkout link will be available before 10 minutes of your reservation.</h5>
+          <h5 style="text-indent: 35px">Checkout link will be available before 10 minutes of your reservation. &nbsp;&nbsp;&nbsp; <%= link_to "Reload", root_path %></h5>
       <% end %>
   <% else %>
       <h5 style="text-indent: 35px">You don't have any current reservation.</h5>
@@ -79,4 +79,9 @@
     </tbody>
   </table>
 
+  <% if !current_user.customer? %>
+      <%= link_to 'Add new Car', new_car_path %>
+  <% end %>
+  <h5>Did not like our collection of Cars? Suggest a Car to us.</h5>
+  <h5><%= link_to 'Suggest a Car', new_suggested_car_path %></h5>
 </div>

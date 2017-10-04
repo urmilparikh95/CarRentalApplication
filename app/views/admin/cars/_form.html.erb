@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :manufacturer %>
-    <%= form.text_field :manufacturer, id: :car_manufacturer, placeholder: 'Manufacturer', class: 'form-control' %>
+    <%= form.text_field :manufacturer, id: :car_manufacturer, placeholder: "Manufacturer", class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :style %>
-    <%= form.select :style, Car.styles.values, id: :car_status, class: 'form-control' %>
+    <%= form.select :style, Car.styles.values, id: :car_style, :selected => @car.style[2], class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -38,12 +38,7 @@
 
   <div class="field">
     <%= form.label :location %>
-    <%= form.text_field :location, id: :car_location, placeholder: 'location', class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Car.statuses.values, id: :car_status, class: 'form-control' %>
+    <%= form.text_field :location, id: :car_location, placeholder: 'Location', class: 'form-control' %>
   </div>
 
   <div class="actions">

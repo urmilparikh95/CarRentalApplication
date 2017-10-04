@@ -36,3 +36,7 @@
 <br>
 
 <%= link_to 'New Car', new_admin_car_path %>
+<% if suggested_car_exist? %>
+  <h5>User have suggested few cars.</h5>
+  <h5><%= link_to 'View Suggestions', suggested_cars_path %></h5>
+<% end %>

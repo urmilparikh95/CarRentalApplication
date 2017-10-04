@@ -1,6 +1,6 @@
 class Admin::CarsController < Admin::AdminController
   before_action :set_car, only: [:show, :edit, :update, :destroy, :reservation_history, :edit_status, :update_status]
-
+  before_action :set_suggested_car, only: [:new, :create]
   # GET admin/cars
   # GET admin/cars.json
   def index
@@ -21,6 +21,10 @@ class Admin::CarsController < Admin::AdminController
   # GET admin/cars/new
   def new
     @car = Car.new
+    @car.manufacturer = @suggested_car.manufacturer
+    @car.model = @suggested_car.model
+    @car.style = @suggested_car.style
+    @car.location = @suggested_car.location
   end
 
   # GET admin/cars/1/edit
@@ -31,9 +35,10 @@ class Admin::CarsController < Admin::AdminController
   # POST admin/cars.json
   def create
     @car = Car.new(car_params)
-
+    @car.status = "available"
+    @suggested_car_status = "accepted"
     respond_to do |format|
-      if @car.save
+      if @car.save and @suggested_car.update(:status => @suggested_car_status)
         format.html { redirect_to admin_cars_path, notice: 'Car was successfully created.' }
         format.json { render :show, status: :created, location: @car }
       else
@@ -99,6 +104,11 @@ class Admin::CarsController < Admin::AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_suggested_car
+      @suggested_car = SuggestedCar.find(3)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

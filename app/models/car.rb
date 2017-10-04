@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  enum status: { available: 'Available', reserved: 'Reserved', checked_out: 'Checked out' }
+  enum status: { available: 'Available', reserved: 'Reserved', checked_out: 'Checked out'}
   enum style: { coupe: 'Coupe', sedan: 'Sedan', suv: 'SUV' }
   has_many :reservations
   has_many :users, through: :reservations

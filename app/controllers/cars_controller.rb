@@ -56,4 +56,9 @@ class CarsController < ApplicationController
     def set_user
       @user = current_user
     end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def car_params
+      params.require(:car).permit(:licence_no, :manufacturer, :model, :style, :hourly_rate, :location, :status)
+    end
 end

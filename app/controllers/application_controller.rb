@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :user_reservation, :valid_time_to_check_out?
+  helper_method :current_user, :logged_in?, :user_reservation, :valid_time_to_check_out?, :suggested_car_exist?
   before_action :require_user
 
   # Returns the current logged-in user (if any).
@@ -22,10 +22,14 @@ class ApplicationController < ActionController::Base
     if @reservation
       time_diff = @reservation.from - DateTime.now
       puts "CheckOut Time Diff: #{time_diff}"
-      if(time_diff <= 36000)
+      if(time_diff <= 600)
         return true
       end
     end
+  end
+
+  def suggested_car_exist?
+    @reservation = SuggestedCar.where(:status => "Pending").first
   end
 
   def not_logged_in
