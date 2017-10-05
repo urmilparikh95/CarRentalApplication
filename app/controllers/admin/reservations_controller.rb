@@ -30,6 +30,7 @@ class Admin::ReservationsController < Admin::AdminController
     @reservation.status = 'current'
     @reservation.user_id = @user.id
     @reservation.rental_charge = @reservation.calculate_rental_charge
+    @car = @reservation.car
     @car.status = 'reserved'
     respond_to do |format|
       if @reservation.save and @car.save
