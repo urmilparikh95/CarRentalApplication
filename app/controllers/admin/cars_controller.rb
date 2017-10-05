@@ -5,7 +5,7 @@ class Admin::CarsController < Admin::AdminController
   # GET admin/cars
   # GET admin/cars.json
   def index
-    @cars = Car.paginate(:page => params[:page], :per_page => 5)
+    @cars = Car.paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET admin/cars/1

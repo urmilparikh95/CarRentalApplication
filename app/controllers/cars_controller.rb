@@ -8,9 +8,9 @@ class CarsController < ApplicationController
   # GET /cars.json
   def index
     if !params[:query]
-      @cars = Car.paginate(:page => params[:page], :per_page => 4)
+      @cars = Car.paginate(:page => params[:page], :per_page => 6)
     else
-      @cars = Car.where("#{params[:status].to_sym} ilike ?", "%#{params[:query].to_s}%").paginate(:page => params[:page], :per_page => 5)
+      @cars = Car.where("#{params[:status].to_sym} ilike ?", "%#{params[:query].to_s}%").paginate(:page => params[:page], :per_page => 6)
     end
   end
 
