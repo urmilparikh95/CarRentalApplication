@@ -31,7 +31,6 @@ There are 3 types of Users - Customers, Admins and Superadmins and their functio
   * View profile of other Admins
   * Delete other Admins
   * View List of cars, their details and their availablity.
-  * Can search cars on basis of his/her preference.
   * Add a new Car, Edit and Delete already existing cars
   * View the reservation history for a particular Car
   * Can view the suggestions given by the customers and make a decision whether to accept or reject
@@ -59,5 +58,6 @@ There are 3 types of Users - Customers, Admins and Superadmins and their functio
 * For the customer suggestions, if an admin approves the suggestion, he can edit it before adding the car to the system.
 * For the customer subscription, a customer cannot subscribe to a car he/she has already reserved/checked out.
 * The reservation time have been set by active job. So changing system time might not work. You have to actually wait for that much time.
+* For an admin to reserve a car for customer go to customers section in admin and select that particular customer.
 
   
