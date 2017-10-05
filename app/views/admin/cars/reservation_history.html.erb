@@ -34,7 +34,7 @@
   <%= @car.status.humanize %>
 </p>
 <br>
-<% if @reservations.nil? %>
+<% if !@reservations.nil? %>
   <table class="table">
     <thead>
     <tr>
