@@ -31,6 +31,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'pg'
+gem 'sidekiq'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
