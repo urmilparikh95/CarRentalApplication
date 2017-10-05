@@ -70,14 +70,14 @@ class Admin::UsersController < Admin::AdminController
   # DELETE admin/users/1.json
   def destroy
     if @user == current_user or @user.super_admin?
-      return redirect_to admin_users_path, alert: 'Cannot delete this user'
+      return redirect_to admin_cars_url, alert: 'Cannot delete this user'
     end
     unless @user.reservations.empty?
-      return redirect_to admin_users_path, alert: 'Cannot delete this user!! There are reservations done by this user in the system'
+      return redirect_to admin_cars_url, alert: 'Cannot delete this user!! There are reservations done by this user in the system'
     end
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: 'The user was successfully destroyed.' }
+      format.html { redirect_to admin_cars_url, notice: 'The user was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
