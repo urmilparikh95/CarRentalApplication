@@ -20,6 +20,8 @@ default: &default
 development:
   <<: *default
   database: CarRental_development
+  username: postgres
+  password: Password
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -42,6 +44,8 @@ development:
 test:
   <<: *default
   database: CarRental_test
+  username: postgres
+  password: Password
 
 production:
   <<: *default
