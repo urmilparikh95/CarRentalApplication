@@ -9,6 +9,6 @@ class CustomerMailer < ApplicationMailer
   def car_available_notification(user, car)
     @user = user
     @car = car
-    mail to: user.email, subject: 'Car you are are interested is available'
+    mail to: user.email, subject: 'Car you are are interested in is available!'
   end
 end

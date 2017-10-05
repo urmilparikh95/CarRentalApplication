@@ -6,7 +6,7 @@
 <p>
   Model - <%= @car.model %>,
   Manufacturer - <%= @car.manufacturer %>
-  Style - <%= @car.style %>
+  Style - <%= @car.style.humanize %>
 </p>
 <p>
   Visit our site to book!! <a href="<%= root_url %>">CarRental</a>
