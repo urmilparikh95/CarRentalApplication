@@ -38,6 +38,7 @@
   <% end %>
 <% else %>
   <h5 style="text-indent: 35px">The user does not have any current reservation.</h5>
+  <%= link_to 'Create reservation', new_admin_user_reservation_path(@user) %>
 <% end %>
 <h4>Reservation History</h4>
 <% if @reservations %>

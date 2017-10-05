@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'reservation_history', to: 'users#reservation_history'
   namespace :admin do
     root 'admin/cars#index'
-    resources :users
+    resources :users do
+      resources :reservations, only: [:new, :create]
+    end
     get 'customers', to: 'users#customers'
     resources :cars
     get 'cars/:id/edit_status', to: 'cars#edit_status', as: 'car_edit_status'

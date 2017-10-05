@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :reservation_history]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :reservation_history, :reserve_car]
 
   # GET admin/users
   # GET admin/users.json

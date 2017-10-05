@@ -1,5 +1,6 @@
 class Admin::ReservationsController < Admin::AdminController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:new, :create]
 
   # GET /reservations
   # GET /reservations.json
@@ -15,6 +16,7 @@ class Admin::ReservationsController < Admin::AdminController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    @cars = Car.where(:status => :available)
   end
 
   # GET /reservations/1/edit
@@ -25,12 +27,16 @@ class Admin::ReservationsController < Admin::AdminController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-
+    @reservation.status = 'current'
+    @reservation.user_id = @user.id
+    @reservation.rental_charge = @reservation.calculate_rental_charge
+    @car.status = 'reserved'
     respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+      if @reservation.save and @car.save
+        format.html { redirect_to admin_reservations_path, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
+        @cars = Car.where(:status => :available)
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
@@ -41,8 +47,8 @@ class Admin::ReservationsController < Admin::AdminController
   # PATCH/PUT /reservations/1.json
   def update
     respond_to do |format|
-      if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+      if @reservation.update(edit_reservation_params)
+        format.html { redirect_to admin_reservations_path, notice: 'Reservation was successfully updated.' }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -72,8 +78,16 @@ class Admin::ReservationsController < Admin::AdminController
       @reservation = Reservation.find(params[:id])
     end
 
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:from, :to, :rental_charge)
+      params.require(:reservation).permit(:from, :to, :car_id)
+    end
+
+    def edit_reservation_params
+      params.require(:reservation).permit(:from, :to)
     end
 end
