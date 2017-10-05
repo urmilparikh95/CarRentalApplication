@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :email, :first_name, :last_name, :role_id, presence: true
   validates :email, uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, :if => :password # only validate if password changed!
+  validates :password, presence: true, length: { minimum: 6 }
 
 
   def admin?
