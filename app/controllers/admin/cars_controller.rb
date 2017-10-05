@@ -5,7 +5,7 @@ class Admin::CarsController < Admin::AdminController
   # GET admin/cars
   # GET admin/cars.json
   def index
-    @cars = Car.paginate(:page => params[:page], :per_page => 8)
+    @cars = Car.where.not(:status => :inactive).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET admin/cars/1
@@ -117,10 +117,18 @@ class Admin::CarsController < Admin::AdminController
   # DELETE admin/cars/1.json
   def destroy
     return redirect_to admin_cars_path, notice: 'Car is still in use, It cannot be deleted now' unless @car.available?
-    @car.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_cars_path, notice: 'Car was successfully destroyed.' }
-      format.json { head :no_content }
+    if @car.reservations
+      @car.update(status: :inactive)
+      respond_to do |format|
+        format.html { redirect_to admin_cars_path, notice: 'Car was successfully marked as inactive.' }
+        format.json { head :no_content }
+      end
+    else
+      @car.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_cars_path, notice: 'Car was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
