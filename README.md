@@ -53,7 +53,7 @@ There are 3 types of Users - Customers, Admins and Superadmins and their functio
 * The application uses email to notify the customers so they must use valid email id for registering.
 * When the customer doesn't return the car on the specified reservation end time, the car automatically becomes available and the transaction is closed with the reservation being removed from current one and added to the history. Also, the customer is notified through email.
 * To simplify the rental charge calculations, the reservation time specified is used to calculate it rather than the actual checkout and return time.
-* Admin cannot delete a car with pending reservations. Also admin cannot delete a car which has a reservation history as deleting it would change the reservation history of many customers.
+* Admin cannot delete a car with pending reservations.
 * Similarly admin cannot delete a customer with pending reservations. Also he cannot delete a customer who has a reservation history as deleting him/her will affect the reservation history of many cars in the system.
 * For the customer suggestions, if a manufacturer-model combination has already been suggested, another customer cannot suggest the same combination. Instead he gets a message telling him that such a suggestion has already been made. 
 * For the customer suggestions, if an admin approves the suggestion, he can edit it before adding the car to the system.
