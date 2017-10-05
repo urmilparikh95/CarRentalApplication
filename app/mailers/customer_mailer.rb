@@ -5,4 +5,10 @@ class CustomerMailer < ApplicationMailer
     @reservation = reservation
     mail to: user.email, subject: 'Reservation time has ended'
   end
+
+  def car_available_notification(user, car)
+    @user = user
+    @car = car
+    mail to: user.email, subject: 'Car you are are interested is available'
+  end
 end

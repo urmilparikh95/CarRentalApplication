@@ -6,4 +6,10 @@ class CustomerMailerPreview < ActionMailer::Preview
     reservation = Reservation.find(1)
     CustomerMailer.car_return_notification(user, car, reservation)
   end
+
+  def car_available_notification
+    user = User.find(1)
+    car = Car.find(1)
+    CustomerMailer.car_available_notification(user, car)
+  end
 end
