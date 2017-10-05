@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  include ApplicationHelper
   before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_action :set_current_car, only: [:edit, :update]
   before_action :set_user, only: [:show, :index]
@@ -20,14 +21,17 @@ class CarsController < ApplicationController
     respond_to do |format|
       if @current_car.reserved?
         @car_status = "checked_out"
-        @reservation_stattus = "current"
+        @reservation_status = "current"
         @message = 'Car was successfully checked out.'
       else
         @car_status = "available"
-        @reservation_stattus = "past"
+        @reservation_status = "past"
         @message = 'Car was successfully returned.'
       end
-      if @current_car.update(:status => @car_status) and @reservation.update(:status => @reservation_stattus)
+      if @current_car.update(:status => @car_status) and @reservation.update(:status => @reservation_status)
+        if @reservation_status == 'past'
+          send_notification(@car)
+        end
         format.html { redirect_to root_path, notice: @message }
         format.json { render :show, status: :ok, location: @current_car }
       else

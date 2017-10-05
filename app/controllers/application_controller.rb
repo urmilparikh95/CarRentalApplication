@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :user_reservation, :valid_time_to_check_out?, :suggested_car_exist?
+  helper_method :current_user, :logged_in?, :user_reservation, :suggested_car_exist?, :user_subscription, :checked_out_by_current_user?
   before_action :require_user
 
   # Returns the current logged-in user (if any).
@@ -23,6 +23,16 @@ class ApplicationController < ActionController::Base
 
   def not_logged_in
     redirect_to root_path if logged_in?
+  end
+
+  def user_subscription car
+    puts car.id
+    @subscription = Subscription.where(:user_id => current_user.id).where(:car_id => car.id).first
+  end
+
+  def checked_out_by_current_user? car
+    @reservation = Reservation.where(:car_id => car.id).where(:status => "Current").first
+    @reservation.user_id == current_user.id
   end
 
   def require_user

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :suggested_cars
   get 'reservation_history', to: 'users#reservation_history'
+  get 'cars/:id/subscriptions/new_subscription', to: 'subscriptions#new_sbscription', as: 'new_subscription'
   namespace :admin do
     root 'admin/cars#index'
     resources :users do

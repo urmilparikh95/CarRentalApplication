@@ -1,4 +1,5 @@
 class Admin::CarsController < Admin::AdminController
+  include ApplicationHelper
   before_action :set_car, only: [:show, :edit, :update, :destroy, :reservation_history, :edit_status, :update_status]
   before_action :set_suggested_car, only: [:new_suggested_car, :create_suggested_car]
   # GET admin/cars
@@ -100,6 +101,9 @@ class Admin::CarsController < Admin::AdminController
         message = 'Car was successfully returned.'
       end
       if @car.update(:status => car_status) and @reservation.update(:status => reservation_status)
+        if reservation_status == 'past'
+          send_notification(@car)
+        end
         format.html { redirect_to admin_customers_path, notice: message }
         format.json { render :show, status: :ok, location: @car }
       else
