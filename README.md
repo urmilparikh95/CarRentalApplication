@@ -21,6 +21,7 @@ There are 3 types of Users - Customers, Admins and Superadmins and their functio
   * View his/her reservation History.
   * Suggest new cars to the admin.
   * Can subscribe to notification for the availablity of a car.
+  * can checkout the car he/she rented only before 10 minutes of his/her reservation start time.
     
 ### Admin can - 
 * Login/Logout 
@@ -59,5 +60,6 @@ There are 3 types of Users - Customers, Admins and Superadmins and their functio
 * For the customer subscription, a customer cannot subscribe to a car he/she has already reserved/checked out.
 * The reservation time have been set by active job. So changing system time might not work. You have to actually wait for that much time.
 * For an admin to reserve a car for customer go to customers section in admin and select that particular customer.
-
-  
+* Heroku sleep constraint - Some request to server has to be made at least every twenty to thirty minutes to prevent heroku from sleeping due to long-time idling. Only following 2 features use schedulers and affected by this constraint.
+    * If a car is not  30 minutes after the pickup time, car will be made available again and reservation will be cancelled.
+    * If the car is not returned in time, car will be made available and notification email is sent to user to return asap.

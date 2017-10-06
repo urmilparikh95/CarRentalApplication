@@ -74,7 +74,7 @@
           <% if car.available? and !user_reservation %>
               <td><%= link_to 'Rent This Car', new_car_reservation_path(car) %></td>
           <% end %>
-          <% if car.checked_out? and !checked_out_by_current_user?(car) and !user_subscription(car)  %>
+          <% if !car.available? and !checked_out_by_current_user?(car) and !user_subscription(car)  %>
               <td><%= link_to 'Notify when available', new_subscription_path(car.id) %></td>
           <% end %>
         </tr>
