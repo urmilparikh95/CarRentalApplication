@@ -36,6 +36,7 @@ class ReservationsController < ApplicationController
     @current_car = Car.find(@reservation.car_id)
     @car_status = "available"
     if @current_reservation.destroy and @current_car.update(:status => @car_status)
+      send_notification(@current_car)
       respond_to do |format|
         format.html { redirect_to root_path, notice: 'Reservation was successfully cancelled.' }
         format.json { head :no_content }

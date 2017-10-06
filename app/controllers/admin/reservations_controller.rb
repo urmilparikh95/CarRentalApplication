@@ -64,6 +64,7 @@ class Admin::ReservationsController < Admin::AdminController
     @car = @reservation.car
     car_status = :available
     if @reservation.destroy and @car.update(:status => car_status)
+      send_notification(@car)
       respond_to do |format|
         format.html { redirect_to admin_reservations_path, notice: 'Reservation was successfully cancelled.' }
         format.json { head :no_content }
