@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  include ApplicationHelper
   before_action :set_car,:set_user, only: [:new, :create]
 
   # GET /reservations/new

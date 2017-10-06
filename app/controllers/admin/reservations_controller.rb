@@ -1,4 +1,5 @@
 class Admin::ReservationsController < Admin::AdminController
+  include ApplicationHelper
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:new, :create]
 
