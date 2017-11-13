@@ -1,9 +1,10 @@
 Car Rental
 ================
+A web-application for renting cars
 
 Link: https://car-rental-company.herokuapp.com
 
-Admin Credentials: email: admin@gmail.com password: admin123<br>
+Admin Credentials: email: admin@gmail.com password: admin123  
 SuperAdmin Credentials: email: superadmin@gmail.com password: supadmin123  
 There are 3 types of Users - Customers, Admins and Superadmins and their functionalities are described as follows  
 
